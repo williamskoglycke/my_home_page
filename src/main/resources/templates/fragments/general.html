@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="headerfiles">
+    <title>Skoglycke.se</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" href="../../images/favicon.ico" th:href="@{/images/favicon.ico}"/>
+    <link rel="icon" type="image/x-icon" href="../../images/favicon.ico" th:href="@{/images/favicon.ico}"/>
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="../../css/all.min.css" th:href="@{/css/all.min.css}" />
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/styles.css" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<div th:fragment="header">
+
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Hem <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/listitems">Shoppinglista</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/imagegallery">Galleri</a>
+                    </li>
+                </ul>
+                <button sec:authorize="isAnonymous()" type="button" class="btn btn-link" data-toggle="modal" data-target="#loggain"><i class="fas fa-user"></i> Logga in </button>
+                <a href="/profile" sec:authorize="isAuthenticated()" class="btn btn-link"><i class="fas fa-user"></i> <span sec:authentication="name">Name</span> </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Modal -->
+    <div class="modal fade" id="loggain" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Logga in</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <button th:if="${loginError}" class="btn btn-danger">
+                        Fel användarnamn eller lösenord.
+                    </button>
+                    <form th:action="@{/authUser}" method="post">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Användarnamn</label>
+                            <input type="username" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Lösenord</label>
+                            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                        <div class="col-lg-9">
+                            <button type="submit" class="btn btn-primary">Logga in</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
+                        </div>
+                        <div class="col-lg-3">
+                            <a href="/registration" class="btn btn-primary">Registrera</a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:fragment="footer">
+    <script src="../../js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script src="../../js/popper.min.js" th:src="@{/js/popper.min.js}"></script>
+    <script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="../../js/javascript.js" th:src="@{/js/javascript.js}"></script>
+</footer>
+</body>
+</html>

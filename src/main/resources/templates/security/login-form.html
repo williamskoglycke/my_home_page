@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<head>
+    <th:block th:include="fragments/general.html :: headerfiles"></th:block>
+</head>
+<body>
+<th:block th:include="fragments/general.html :: header"></th:block>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Logga in</h1>
+    </div>
+
+    <form action="#" th:action="@{/authUser}" method="POST">
+
+        <div th:if="${loginError}" class="alert alert-danger col-xs-offset-1 col-xs-10">
+            Fel användarnamn eller lösenord.
+        </div>
+
+        <div th:if="${regSuccess}"class="alert alert-success col-xs-offset-1 col-xs-10">
+            Du är registrerad.
+        </div>
+
+        <div th:if="${logOut}"class="alert alert-success col-xs-offset-1 col-xs-10">
+            Du har blivit utloggad.
+        </div>
+
+        <div class="form-group">
+            <label for="username">Användarnamn:</label>
+            <input type="text" name="username" id="username" placeholder="Användarnamn" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Lösenord:</label>
+            <input type="password" class="form-control" id="password" placeholder="Lösenord">
+        </div>
+            <button type="submit" class="btn btn-primary">Logga in</button>
+            <a href="/" class="btn btn-secondary">Avbryt</a>
+            <a href="/registration" class="btn btn-primary float-right">Registrera</a>
+
+        </div>
+    </form>
+
+</div>
+
+<div th:insert="fragments/general.html :: footer"></div>
+
+</body>
+</html>

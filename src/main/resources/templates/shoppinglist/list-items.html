@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<th:block th:include="fragments/general.html :: headerfiles"></th:block>
+</head>
+<body>
+
+<th:block th:include="fragments/general.html :: header"></th:block>
+
+<div class="container">
+	<div class="jumbotron">
+	  <h1 class="display-4"><i class="fas fa-shopping-cart"></i> Enkel shoppinglista</h1>
+	  <p class="lead">Mitt första projekt med tekniker som Thymeleaf, Bootstrap, Spring (MVC, AOP, Security) och Hibernate </p>
+	  <hr class="my-4">
+		<a href="/additem" class="btn btn-primary">Lägg till vara</a>
+	</div>
+
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th scope="col" th:if="${nameSorted}"><a href="orderedlist?sort=nameDesc" th:text="#{item_tag}">Name</a></th>
+          <th scope="col" th:unless="${nameSorted}"><a href="orderedlist?sort=nameAsc" th:text="#{item_tag}">Name</a></th>
+          <th scope="col" th:if="${priceSorted}"><a href="orderedlist?sort=priceDesc" th:text="#{price_tag}">Price</a></th>
+          <th scope="col" th:unless="${priceSorted}"><a href="orderedlist?sort=priceAsc" th:text="#{price_tag}">Price</a></th>
+	      <th scope="col" th:text="#{action_tag}">Action</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr th:each="item : ${allItems}">
+	        <td th:text="${item.itemName}">Name</td>
+	        <td th:text="${item.itemPrice}">Price</td>
+	        <td><a th:href="@{updateitem(itemId=${item.id})}" th:text="#{update_item}">Update</a> | <a th:href="@{deleteitem(itemId=${item.id})}" onclick="if (!(confirm('Säker på att du vill radera?'))) return false" th:text="#{delete_item}">Delete</a></td>
+	    </tr>
+	  </tbody>
+	</table>
+
+</div>
+
+<div th:insert="fragments/general.html :: footer"></div>
+</body>
+</html>

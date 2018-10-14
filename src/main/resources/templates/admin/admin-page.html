@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<head>
+    <th:block th:include="fragments/general.html :: headerfiles"></th:block>
+</head>
+<body>
+<th:block th:include="fragments/general.html :: header"></th:block>
+
+<div class="container">
+<div class="jumbotron">
+<h1>Admin page</h1>
+
+<p>Logged user: <span sec:authentication="name">Name</span></p>
+    <p>Roles: <span sec:authentication="principal.authorities">Roll</span></p>
+
+
+</div>
+    <p><a href="admin/sms">Skicka sms</a></p>
+    <p><a href="admin/mail">Skicka mail</a></p>
+</div>
+
+<div th:insert="fragments/general.html :: footer"></div>
+
+</body>
+</html>

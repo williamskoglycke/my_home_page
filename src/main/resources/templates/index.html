@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<th:block th:include="fragments/general.html :: headerfiles"></th:block>
+	<link rel="stylesheet" type="text/css" media="all" href="../../css/landsite.css" th:href="@{/css/landsite.css}" />
+</head>
+<body>
+
+<th:block th:include="fragments/general.html :: header"></th:block>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div id="content">
+					<h1 id="skoglycke">Skoglycke</h1>
+					<h3>Junior javautvecklare</h3>
+					<hr>
+					<button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#reachOut"><i class="fas fa-cocktail"></i> Kontakta</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- Modal -->
+<div class="modal fade" id="reachOut" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalCenterTitle">Kontakta mig</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+
+				<h3><i class="fas fa-at"></i><a class="btn btn-link" href="mailto:william@skoglycke.se"> william@skoglycke.se</a></h3>
+				<h3><i class="fab fa-linkedin"></i><a class="btn btn-link" href="https://www.linkedin.com/in/william-skoglycke/"> Linked in</a></h3>
+
+			</div>
+			<div class="modal-footer">
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<div th:insert="fragments/general.html :: footer"></div>
+
+</body>
+</html>

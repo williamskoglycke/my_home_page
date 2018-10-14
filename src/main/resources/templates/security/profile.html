@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="fragments/general.html :: headerfiles"></th:block>
+</head>
+<body>
+<th:block th:include="fragments/general.html :: header"></th:block>
+
+<div class="container">
+<div class="jumbotron">
+<div sec:authorize="isAuthenticated()">
+    <p>Du är inloggad</p>
+</div>
+
+<div sec:authorize="hasRole('ROLE_USER')">
+    <p><a th:href="@{/user}">User page</a></p>
+</div>
+
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+    <p><a th:href="@{/admin}">Admin page</a></p>
+</div>
+
+<div sec:authorize="hasRole('ROLE_SUPERUSER')">
+    <p><a th:href="@{/superuser}">Superuser page</a></p>
+</div>
+
+    <p>Logged user: <span sec:authentication="name">Name</span></p>
+    <p>Roles: <span sec:authentication="principal.authorities">Roll</span></p>
+
+<form th:action="@{/logOut}" method="post">
+    <input type="submit" value="Logga ut" />
+</form>
+</div>
+</div>
+<div th:insert="fragments/general.html :: footer"></div>
+</body>
+</html>
