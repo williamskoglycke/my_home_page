@@ -4,7 +4,7 @@ The site got a simple CRUD shoppinglist and a responsive image gallery.
 
 Added support for mail and text.
 Added registration page
-Added different roles (Admin, Superuser, User)
+Roles added (Admin, Superuser, User)
 Encrypts passwords to DB
 Content security policy and CSRF token turned on.
 
